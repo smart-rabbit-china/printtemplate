@@ -4,12 +4,14 @@
 开箱即用，开发者可以很快速的集成到内部应用中。
 
 
-### Demo
+## Demo
 
-<video src="./doc/video/QQ20200425-182730-HD.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
+![预览图](./doc/demo.png)
+
+### [Demo演示视频](https://www.bilibili.com/video/BV1aK4y1k7tg/)
 
 
-### Design
+## Design
 
 - 1.打印模板-设计输出流程：
 
@@ -28,7 +30,7 @@
 3）出票口列表、新增出票口、删除出票口、修改出票口。
 
 
-### Deployment
+## Deployment
 
 1.初始化数据，在MySQL中新建数据库`print_template`导`doc`目录下`init_print_template.sql`脚本。
 
@@ -37,6 +39,6 @@
 3.在项目的`h5-demo`目录中提供了一个demo，介绍了如何在浏览器中绘制一个打印模板。
 
 
-### License
+## License
 
 The project is licensed under the Apache 2 license.
