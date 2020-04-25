@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterDeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterDeviceDO" >
+      <id column="id" property="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="device_name" property="deviceName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="printer_device_type" property="printerDeviceType" jdbcType="TINYINT" javaType="java.lang.Integer" />
+      <result column="address" property="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="is_delete" property="delete" jdbcType="TINYINT" javaType="java.lang.Integer" />
+      <result column="shop_id" property="shopId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="creator_id" property="creatorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="creator_name" property="creatorName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="updator_id" property="updatorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="updator_name" property="updatorName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, device_name, printer_device_type, address, is_delete, shop_id, creator_id, creator_name, 
+    updator_id, updator_name, create_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from printer_device
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectPrinterDeviceListByShopId" parameterType="int" resultMap="BaseResultMap">
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM printer_device
+      WHERE shop_id = #{shopId}
+      AND is_delete = 0
+  </select>
+
+  <insert id="insert" parameterType="com.zxcs.printtemplate.model.PrinterDeviceDO" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO printer_device
+    (
+      device_name, printer_device_type, address, is_delete, shop_id, creator_id, creator_name,
+      updator_id, updator_name, create_time, update_time
+    )
+    VALUES
+    (
+      #{deviceName}, #{printerDeviceType}, #{address}, #{delete}, #{shopId}, #{creatorId}, #{creatorName},
+      #{updatorId}, #{updatorName}, now(), now()
+    )
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxcs.printtemplate.model.PrinterDeviceDO" >
+    update printer_device
+    <set >
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="printerDeviceType != null" >
+        printer_device_type = #{printerDeviceType,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="delete != null" >
+        is_delete = #{delete,jdbcType=TINYINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="updatorId != null" >
+        updator_id = #{updatorId,jdbcType=INTEGER},
+      </if>
+      <if test="updatorName != null" >
+        updator_name = #{updatorName,jdbcType=VARCHAR},
+      </if>
+      update_time = now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

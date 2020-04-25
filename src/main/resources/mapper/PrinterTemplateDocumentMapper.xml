@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterTemplateDocumentMapper">
+    <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterTemplateDocumentDO">
+        <id column="id" property="id" javaType="Integer" jdbcType="INTEGER" />
+        <result column="name" property="name" javaType="String" jdbcType="VARCHAR" />
+        <result column="document_type" property="documentType" javaType="Integer" jdbcType="INTEGER" />
+        <result column="url" property="url" javaType="String" jdbcType="VARCHAR" />
+        <result column="status" property="status" javaType="Integer" jdbcType="INTEGER" />
+        <result column="shop_id" property="shopId" javaType="Integer" jdbcType="INTEGER" />
+        <result column="creator_id" property="creatorId" javaType="Integer" jdbcType="INTEGER" />
+        <result column="creator_name" property="creatorName" javaType="String" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" javaType="Date" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" javaType="Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, `name`, document_type, url, status, shop_id, creator_id, creator_name, create_time, update_time
+    </sql>
+
+    <insert id="insertShopPrinterTemplateDocument" parameterType="com.zxcs.printtemplate.model.PrinterTemplateDocumentDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO printer_template_document
+        (
+          `name`, document_type, url, status, shop_id, creator_id, creator_name, create_time, update_time
+        )
+        VALUES (#{name}, #{documentType}, #{url}, #{status}, #{shopId}, #{creatorId}, #{creatorName}, now(), now())
+    </insert>
+
+    <select id="selectShopPrinterTemplateDocumentByPrimaryId" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM printer_template_document
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectShopPrinterTemplateDocumentByName" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM printer_template_document
+        WHERE name = #{name}
+        AND status IN (1, 2)
+    </select>
+
+    <update id="updateShopPrinterTemplateDocumentByPrimaryId" parameterType="com.zxcs.printtemplate.model.PrinterTemplateDocumentDO">
+        UPDATE printer_template_document
+        <set>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="documentType != null">document_type = #{documentType},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="shopId != null">shop_id = #{shopId},</if>
+            update_time = now()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateShopPrinterTemplateDocumentStatusByPrimaryId" parameterType="int">
+        UPDATE printer_template_document
+        SET status = 0
+        WHERE id = #{id}
+    </update>
+
+    <update id="disableShopPrinterTemplateDocumentStatusByShopIdAndDocumentType" parameterType="map">
+        UPDATE printer_template_document
+        SET status = 2
+        WHERE shop_id = #{shopId}
+        AND status = 1
+        AND document_type = #{documentType}
+    </update>
+
+    <update id="updateShopPrinterTemplateDocumentStatusByShopIdAndDocumentType" parameterType="map">
+        UPDATE printer_template_document
+        SET status = #{status}
+        WHERE id = #{templateId}
+    </update>
+
+    <select id="selectPrinterTemplateDocumentByShopIdAndDocumentType" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM printer_template_document
+        WHERE shop_id IN (0, #{shopId})
+        AND document_type = #{documentType}
+        AND status in (1, 2)
+    </select>
+</mapper>

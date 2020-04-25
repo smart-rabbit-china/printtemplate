@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterSystemComponentMapper">
+    <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterSystemComponentDO">
+        <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="module_id" property="moduleId" javaType="int" jdbcType="INTEGER" />
+        <result column="parent_id" property="parentId" javaType="int" jdbcType="INTEGER" />
+        <result column="ref_id" property="refId" javaType="int" jdbcType="INTEGER" />
+        <result column="label" property="label" javaType="string" jdbcType="VARCHAR" />
+        <result column="value" property="value" javaType="string" jdbcType="VARCHAR" />
+        <result column="value_style" property="valueStyle" javaType="string" jdbcType="VARCHAR" />
+        <result column="placeholder" property="placeholder" javaType="string" jdbcType="VARCHAR" />
+        <result column="type" property="type" javaType="string" jdbcType="VARCHAR" />
+        <result column="row" property="row" javaType="int" jdbcType="INTEGER" />
+        <result column="column" property="column" javaType="int" jdbcType="INTEGER" />
+        <result column="width" property="width" javaType="int" jdbcType="INTEGER" />
+        <result column="sort" property="sort" javaType="int" jdbcType="INTEGER" />
+        <result column="is_enable" property="enable" javaType="int" jdbcType="TINYINT" />
+        <result column="create_time" property="createTime" javaType="Date" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" javaType="Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, module_id, parent_id, ref_id, label, `value`, value_style, placeholder, `type`, row, `column`, width, sort, is_enable, create_time, update_time
+    </sql>
+
+    <insert id="insertPrinterSystemComponent" parameterType="com.zxcs.printtemplate.model.PrinterSystemComponentDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO printer_system_component
+        (
+            module_id, parentId, ref_id, label, `value`, value_style, placeholder, `type`, row, `column`, width, sort, is_enable, create_time, update_time
+        )
+        VALUES(#{moduleId}, #{parentId}, #{refId}, #{label}, #{value}, #{valueStyle}, #{placeholder}, #{type}, #{row}, #{column}, #{width}, #{sort}, #{enable}, now(), now())
+    </insert>
+
+    <select id="selectPrinterSystemComponentListByTemplateTypeId" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM printer_system_component sc
+        WHERE sc.module_id IN
+        (
+            SELECT sm.id
+            FROM printer_template_module sm
+            WHERE sm.document_type = #{templateType}
+        )
+    </select>
+</mapper>

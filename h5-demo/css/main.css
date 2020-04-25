@@ -1,0 +1,115 @@
+.component-box {
+  border: 4px dotted dodgerblue;
+  padding: 20px 30px;
+}
+.component-box .panel-module {
+  margin: 10px 20px;
+  border: 2px solid gray;
+}
+.component-box .panel-module .panel-module-title {
+  padding: 0 10px;
+  border-bottom: 2px solid gray;
+}
+.component-box .panel-module .panel-module-body {
+  padding: 2%;
+  /*启用状态*/
+}
+.component-box .panel-module .panel-module-body .panel-component {
+  margin: 2%;
+  width: 28%;
+  background-color: gray;
+  display: inline-block;
+  border: 1px solid white;
+  height: 45px;
+  cursor: pointer;
+}
+.component-box .panel-module .panel-module-body .panel-component table {
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+.component-box .panel-module .panel-module-body .panel-component table tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.component-box .panel-module .panel-module-body .panel-component table tbody tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+.component-box .panel-module .panel-module-body .panel-component table tbody tr td {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.component-box .panel-module .panel-module-body .panel-component:hover {
+  border: 1px solid gray;
+}
+.component-box .panel-module .panel-module-body .switch-on {
+  background-color: #2D93CA;
+  color: #000;
+}
+.template-container {
+  width: 70%;
+  border: 4px dotted dodgerblue;
+  padding: 30px 30px;
+  background-color: #e4e4e4;
+}
+.template-container .template-module-list {
+  background-color: white;
+  margin: 0 20px;
+  padding: 20px 15px;
+}
+.template-container .template-module-list .template-module {
+  /*模块分隔线*/
+}
+.template-container .template-module-list .template-module .template-row {
+  display: flex;
+  justify-content: space-between;
+  /*获取焦点*/
+  /*店铺logo*/
+}
+.template-container .template-module-list .template-module .template-row .template-component {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid white;
+}
+.template-container .template-module-list .template-module .template-row .template-component:hover {
+  border: 1px solid orange;
+  background-color: rgba(247, 248, 74, 0.67);
+  cursor: pointer;
+}
+.template-container .template-module-list .template-module .template-row .template-component-focus {
+  border: 1px solid orange;
+  background-color: rgba(247, 248, 74, 0.67);
+}
+.template-container .template-module-list .template-module .template-row .template-component-individuation {
+  width: 100%;
+}
+.template-container .template-module-list .template-module .template-row .template-component-individuation .template-component-table .template-component-thead .template-component-tr,
+.template-container .template-module-list .template-module .template-row .template-component-individuation .template-component-table .template-component-tbody .template-component-tr {
+  display: flex;
+  justify-content: space-between;
+}
+.template-container .template-module-list .template-module .template-row .shop-logo {
+  width: 100%;
+  color: #3194ff;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid black;
+  background-color: #e6e6e6;
+}
+.template-container .template-module-list .template-module .the-divider {
+  margin: 5px 0;
+}
+.template-property-panel {
+  position: fixed;
+  bottom: 10%;
+  right: 18%;
+  width: 14%;
+}

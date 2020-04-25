@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterKitchenDocumentTypeRulesMapper" >
+  <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterKitchenDocumentTypeRulesDO" >
+      <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+      <result column="printer_kitchen_id" property="printerKitchenId" javaType="int" jdbcType="INTEGER" />
+      <result column="document_type_id" property="documentTypeId" javaType="int" jdbcType="INTEGER" />
+      <result column="number" property="number" javaType="int" jdbcType="TINYINT" />
+      <result column="printer_type" property="printerType" javaType="int" jdbcType="TINYINT" />
+      <result column="is_delete" property="delete" javaType="int" jdbcType="TINYINT" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <result column="update_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, printer_kitchen_id, document_type_id, `number`, printer_type, is_delete, create_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from printer_kitchen_document_type_rules
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectPrinterKitchenDocumentTypeRulesListByPrinterKitchenId" parameterType="int" resultMap="BaseResultMap">
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM printer_kitchen_document_type_rules
+      WHERE printer_kitchen_id = #{printerKitchenId}
+      AND is_delete = 0
+  </select>
+
+  <insert id="insert" parameterType="com.zxcs.printtemplate.model.PrinterKitchenDocumentTypeRulesDO" useGeneratedKeys="true" keyProperty="id">
+    insert into printer_kitchen_document_type_rules
+    (
+      printer_kitchen_id, document_type_id,
+      `number`, printer_type, is_delete, create_time,
+      update_time
+    )
+    values
+    (
+      #{printerKitchenId,jdbcType=INTEGER}, #{documentTypeId,jdbcType=INTEGER},
+      #{number,jdbcType=TINYINT}, #{printerType,jdbcType=TINYINT}, #{delete, jdbcType=TINYINT},
+      now(),
+      now()
+    )
+  </insert>
+
+  <insert id="insertMultipleRecord" parameterType="list">
+      INSERT INTO printer_kitchen_document_type_rules
+      (
+        printer_kitchen_id, document_type_id,
+        `number`, printer_type, is_delete, create_time,
+        update_time
+      )
+      VALUES
+      <foreach collection="list" item="item" separator=",">
+          (
+            #{item.printerKitchenId},
+            #{item.documentTypeId},
+            #{item.number},
+            #{item.printerType},
+            0,
+            now(),
+            now()
+          )
+      </foreach>
+  </insert>
+
+  <update id="updateMultipleRecordByPrinterKitchenId" parameterType="int">
+      UPDATE printer_kitchen_document_type_rules
+      SET is_delete = 1
+      WHERE printer_kitchen_id = #{printerKitchenId}
+  </update>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxcs.printtemplate.model.PrinterKitchenDocumentTypeRulesDO" >
+    update printer_kitchen_document_type_rules
+    <set >
+      <if test="printerKitchenId != null" >
+        printer_kitchen_id = #{printerKitchenId,jdbcType=INTEGER},
+      </if>
+      <if test="documentTypeId != null" >
+        document_type_id = #{documentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        `number` = #{number,jdbcType=TINYINT},
+      </if>
+      <if test="printerType != null" >
+        printer_type = #{printerType,jdbcType=TINYINT},
+      </if>
+      <if test="delete != null">
+        is_delete = #{delete, jdbcType=TINYINT},
+      </if>
+      update_time = now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

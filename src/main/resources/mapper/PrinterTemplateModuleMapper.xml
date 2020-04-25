@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterTemplateModuleMapper">
+    <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterTemplateModuleDO">
+        <id column="id" property="id" javaType="Integer" jdbcType="INTEGER" />
+        <result column="module_name" property="moduleName" javaType="String" jdbcType="VARCHAR" />
+        <result column="module_describe" property="moduleDescribe" javaType="String" jdbcType="VARCHAR" />
+        <result column="documentType" property="documentType" javaType="Integer" jdbcType="INTEGER" />
+        <result column="sort" property="sort" javaType="Integer" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" javaType="Date" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" javaType="Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, module_name, module_describe, document_type, sort, create_time, update_time
+    </sql>
+
+    <select id="selectPrinterTemplateModuleByDocumentId" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM printer_template_module
+        WHERE document_type = #{documentType}
+        ORDER BY sort
+    </select>
+</mapper>

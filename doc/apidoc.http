@@ -1,0 +1,146 @@
+### 1.查询-票据类型
+GET 127.0.0.1:8080/printerTicket/types
+
+### 2.查询店铺-模板列表（含默认模板）
+GET 127.0.0.1:8080/printerTicket/list?shopId=1&documentType=1
+
+### 3.票据样式-获取系统组件
+GET 127.0.0.1:8080/printerTicket/systemComponents?templateId=1
+
+### 4.票据样式-获取预览组件
+GET 127.0.0.1:81/printerTicket/previewComponents?templateId=1
+
+### 5.店铺-新增模板
+POST 127.0.0.1:8080/printerTicket/save
+Content-Type: application/json
+
+{
+  "documentType": 1,
+  "modules": "...",
+  "name": "模板二",
+  "operatorId": 0,
+  "shopId": "1",
+  "url": ""
+}
+
+### 6.店铺-更新模板
+POST 127.0.0.1:8080/printerTicket/update
+Content-Type: application/json
+
+{
+  "templateId": 1,
+  "modules": "",
+  "name": "模板二",
+  "operatorId": 0,
+  "shopId": "1",
+  "url": ""
+}
+
+### 7.店铺-删除模板
+DELETE 127.0.0.1:81/printerTicket?id=1
+
+### 8.店铺-启用模板
+PUT 127.0.0.1:81/printerTicket/enable
+
+### 9.打印机列表
+GET 127.0.0.1:8080/printerDevice/list?shopId=1&page=1&rows=1
+
+### 10.新增-打印机
+POST 127.0.0.1:8080/printerDevice/save
+Content-Type: application/json
+
+{
+  "deviceName": "后厨打印机",
+  "printerDeviceType": 2,
+  "address": "192.168.1.13",
+  "shopId": 1,
+  "operatorId": 0
+}
+
+### 11.更新-打印机
+POST 127.0.0.1:8080/printerDevice/edit
+Content-Type: application/json
+
+{
+	"id": 2,
+	"deviceName": "后厨打印机",
+	"printerDeviceType": 2,
+	"address": "192.168.1.13",
+	"shopId": 1,
+	"operatorId": 0
+}
+
+### 12.删除-打印机
+DELETE 127.0.0.1:8080/printerDevice?id=1
+
+### 13.出票口-列表
+GET 127.0.0.1:8080/printerKitchen/list?shopId=1&page=1&rows=1
+
+### 14.新增-出票口
+POST 127.0.0.1:8080/printerKitchen/save
+Content-Type: application/json
+
+{
+    "name": "出票口规则一",
+    "printerDeviceId": 1,
+    "shopId": 1,
+    "operatorId": 1,
+    "documentTypeRules": [
+        {
+            "documentTypeId": 1,
+            "number": 1,
+            "printerType": 1
+        }
+    ],
+    "table": 1,
+    "goods": 1,
+    "tableRules": [
+        {
+            "tableId": 1
+        }
+    ],
+    "goodsRules": [
+        {
+            "goodsId": 1,
+            "stockId": 0
+        }
+    ]
+}
+
+### 15.更新-出票口
+PUT 127.0.0.1:8080/printerKitchen/edit
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "出票口规则一",
+    "printerDeviceId": 1,
+    "shopId": 1,
+    "operatorId": 1,
+    "documentTypeRules": [
+        {
+            "documentTypeId": 1,
+            "number": 1,
+            "printerType": 1
+        }
+    ],
+    "table": 1,
+    "goods": 1,
+    "tableRules": [
+        {
+            "tableId": 1
+        }
+    ],
+    "goodsRules": [
+        {
+            "goodsId": 2,
+            "stockId": 0
+        }
+    ]
+}
+
+### 16.查询-出票口
+GET 127.0.0.1:8080/printerKitchen?id=1
+
+### 17.删除-出票口
+DELETE 127.0.0.1:8080/printerKitchen?id=2

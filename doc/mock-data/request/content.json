@@ -1,0 +1,510 @@
+{
+	"content": {
+		"rows": [
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "center",
+							"fontSize": 4
+						},
+						"text": "#{shopName}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "center",
+							"fontSize": 4
+						},
+						"text": "#{ticketType}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"text": "-",
+				"type": "line"
+			},
+			{
+				"cells": [
+					{
+						"percent": 70,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "桌台号:#{tableNum}"
+					},
+					{
+						"percent": 30,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "流水号:#{serialNum}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 80,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "订单号:#{orderNum}"
+					},
+					{
+						"percent": 20,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "人数:#{peopleNum}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "会员:#{memberNum}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "#{mealPeopleDetail}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"text": "-",
+				"type": "line"
+			},
+			{
+				"cells": [
+					{
+						"percent": 40,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "商品",
+						"visible": "#{goodSourceSize}!=0"
+					},
+					{
+						"percent": 20,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "单价",
+						"visible": "#{goodSourceSize}!=0"
+					},
+					{
+						"percent": 20,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "数量",
+						"visible": "#{goodSourceSize}!=0"
+					},
+					{
+						"percent": 20,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "价格",
+						"visible": "#{goodSourceSize}!=0"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"childRows": [
+					{
+						"style": {
+							"align": "center",
+							"fontSize": 1
+						},
+						"text": "-",
+						"type": "line",
+						"value": "#{goodMiddleCategoryName}"
+					},
+					{
+						"childRows": [
+							{
+								"cells": [
+									{
+										"percent": 40,
+										"style": {
+											"align": "left",
+											"fontSize": 1
+										},
+										"text": "#{good}"
+									},
+									{
+										"percent": 20,
+										"style": {
+											"align": "right",
+											"fontSize": 1
+										},
+										"text": "#{price}"
+									},
+									{
+										"percent": 20,
+										"style": {
+											"align": "right",
+											"fontSize": 1
+										},
+										"text": "#{number}"
+									},
+									{
+										"percent": 20,
+										"style": {
+											"align": "right",
+											"fontSize": 1
+										},
+										"text": "#{amount}"
+									}
+								],
+								"type": "text"
+							},
+							{
+								"cells": [
+									{
+										"percent": 80,
+										"style": {
+											"align": "left",
+											"fontSize": 1
+										},
+										"text": "#{practice}"
+									},
+									{
+										"percent": 20,
+										"style": {
+											"align": "right",
+											"fontSize": 1
+										},
+										"text": "#{practicePrice}"
+									}
+								],
+								"type": "text"
+							},
+							{
+								"cells": [
+									{
+										"percent": 80,
+										"style": {
+											"align": "left",
+											"fontSize": 1
+										},
+										"text": "#{burdening}"
+									},
+									{
+										"percent": 20,
+										"style": {
+											"align": "right",
+											"fontSize": 1
+										},
+										"text": "#{burdeningPrice}"
+									}
+								],
+								"type": "text"
+							},
+							{
+								"cells": [
+									{
+										"percent": 100,
+										"style": {
+											"align": "left",
+											"fontSize": 1
+										},
+										"text": "#{memo}"
+									}
+								],
+								"type": "text"
+							},
+							{
+								"childRows": [
+									{
+										"style": {
+											"align": "center",
+											"fontSize": 1
+										},
+										"text": "-",
+										"type": "line",
+										"value": "#{setMealGroupCategoryNew}"
+									},
+									{
+										"childRows": [
+											{
+												"cells": [
+													{
+														"percent": 40,
+														"style": {
+															"align": "left",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryGood}"
+													},
+													{
+														"percent": 20,
+														"style": {
+															"align": "right",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryPrice}"
+													},
+													{
+														"percent": 20,
+														"style": {
+															"align": "right",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryNumber}"
+													},
+													{
+														"percent": 20,
+														"style": {
+															"align": "right",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryAmount}"
+													}
+												],
+												"type": "text"
+											},
+											{
+												"cells": [
+													{
+														"percent": 80,
+														"style": {
+															"align": "left",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryPractice}"
+													},
+													{
+														"percent": 20,
+														"style": {
+															"align": "right",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryPracticePrice}"
+													}
+												],
+												"type": "text"
+											},
+											{
+												"cells": [
+													{
+														"percent": 80,
+														"style": {
+															"align": "left",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryBurdening}"
+													},
+													{
+														"percent": 20,
+														"style": {
+															"align": "right",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryBurdeningPrice}"
+													}
+												],
+												"type": "text"
+											},
+											{
+												"cells": [
+													{
+														"percent": 100,
+														"style": {
+															"align": "left",
+															"fontSize": 1
+														},
+														"text": "#{setMealGroupCategoryMemo}"
+													}
+												],
+												"type": "text"
+											}
+										],
+										"source": "#{setMealGroupCategorySource}",
+										"type": "list"
+									}
+								],
+								"source": "#{setMealGroupSource}",
+								"type": "list"
+							}
+						],
+						"source": "#{goodMiddleCategorySource}",
+						"type": "list"
+					}
+				],
+				"source": "#{goodSource}",
+				"type": "list"
+			},
+			{
+				"text": "-",
+				"type": "line"
+			},
+			{
+				"cells": [
+					{
+						"percent": 60,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "合计"
+					},
+					{
+						"percent": 20,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "#{goodNumber}"
+					},
+					{
+						"percent": 20,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "#{goodPrice}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"text": "-",
+				"type": "line"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "整单备注:#{orderMemo}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"text": "-",
+				"type": "line"
+			},
+			{
+				"cells": [
+					{
+						"percent": 50,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "服务员:#{waiter}"
+					},
+					{
+						"percent": 50,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "操作员:#{cashier}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 50,
+						"style": {
+							"align": "left",
+							"fontSize": 1
+						},
+						"text": "开单:#{openBillingTime}"
+					},
+					{
+						"percent": 50,
+						"style": {
+							"align": "right",
+							"fontSize": 1
+						},
+						"text": "打印:#{printTime}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "center",
+							"fontSize": 1
+						},
+						"text": "#{shopAddress}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "center",
+							"fontSize": 1
+						},
+						"text": "#{shopPhone}"
+					}
+				],
+				"type": "text"
+			},
+			{
+				"cells": [
+					{
+						"percent": 100,
+						"style": {
+							"align": "center",
+							"fontSize": 1
+						},
+						"text": "欢迎下次光临"
+					}
+				],
+				"type": "text"
+			}
+		]
+	}
+}

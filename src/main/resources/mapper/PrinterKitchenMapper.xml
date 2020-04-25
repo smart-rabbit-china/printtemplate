@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterKitchenMapper" >
+  <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterKitchenDO" >
+      <id column="id" property="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="printer_device_id" property="printerDeviceId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="is_table" property="table" jdbcType="TINYINT" javaType="java.lang.Integer" />
+      <result column="is_goods" property="goods" jdbcType="TINYINT" javaType="java.lang.Integer" />
+      <result column="is_delete" property="delete" jdbcType="TINYINT" javaType="java.lang.Integer" />
+      <result column="shop_id" property="shopId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="creator_id" property="creatorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="creator_name" property="creatorName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="updator_id" property="updatorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <result column="updator_name" property="updatorName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, `name`, printer_device_id, is_table, is_goods, is_delete, shop_id, creator_id,
+    creator_name, updator_id, updator_name, create_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from printer_kitchen
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectPrinterKitchenListByShopId" parameterType="int" resultMap="BaseResultMap">
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM printer_kitchen
+      WHERE shop_id = #{shopId}
+      AND is_delete = 0
+  </select>
+
+  <insert id="insert" parameterType="com.zxcs.printtemplate.model.PrinterKitchenDO" useGeneratedKeys="true" keyProperty="id">
+    insert into printer_kitchen
+    (
+      `name`, printer_device_id,
+      is_table, is_goods, is_delete, 
+      shop_id, creator_id, creator_name, 
+      updator_id, updator_name, create_time, 
+      update_time
+    )
+    values
+    (
+      #{name,jdbcType=VARCHAR}, #{printerDeviceId,jdbcType=INTEGER},
+      #{table,jdbcType=TINYINT}, #{goods,jdbcType=TINYINT}, #{delete,jdbcType=TINYINT}, 
+      #{shopId,jdbcType=INTEGER}, #{creatorId,jdbcType=INTEGER}, #{creatorName,jdbcType=VARCHAR}, 
+      #{updatorId,jdbcType=INTEGER}, #{updatorName,jdbcType=VARCHAR},
+      now(),
+      now()
+    )
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxcs.printtemplate.model.PrinterKitchenDO" >
+    update printer_kitchen
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="printerDeviceId != null" >
+        printer_device_id = #{printerDeviceId,jdbcType=INTEGER},
+      </if>
+      <if test="table != null" >
+        is_table = #{table,jdbcType=TINYINT},
+      </if>
+      <if test="goods != null" >
+        is_goods = #{goods,jdbcType=TINYINT},
+      </if>
+      <if test="delete != null" >
+        is_delete = #{delete,jdbcType=TINYINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="updatorId != null" >
+        updator_id = #{updatorId,jdbcType=INTEGER},
+      </if>
+      <if test="updatorName != null" >
+        updator_name = #{updatorName,jdbcType=VARCHAR},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

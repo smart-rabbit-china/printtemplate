@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterCustomComponentMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterCustomComponentDO">
+        <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="document_template_id" property="documentTemplateId" javaType="int" jdbcType="INTEGER" />
+        <result column="system_component_id" property="systemComponentId" javaType="int" jdbcType="INTEGER" />
+        <result column="value_style" property="valueStyle" javaType="string" jdbcType="VARCHAR" />
+        <result column="is_delete" property="delete" javaType="int" jdbcType="TINYINT" />
+    </resultMap>
+
+    <resultMap id="MergeResultMap" type="com.zxcs.printtemplate.model.PrinterCustomComponentDO">
+        <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="document_template_id" property="documentTemplateId" javaType="int" jdbcType="INTEGER" />
+        <result column="system_component_id" property="systemComponentId" javaType="int" jdbcType="INTEGER"/>
+        <result column="value_style" property="valueStyle" javaType="string" jdbcType="VARCHAR" />
+        <result column="module_id" property="moduleId" javaType="int" jdbcType="INTEGER" />
+        <result column="parent_id" property="parentId" javaType="int" jdbcType="INTEGER" />
+        <result column="ref_id" property="refId" javaType="int" jdbcType="INTEGER" />
+        <result column="label" property="label" javaType="string" jdbcType="VARCHAR" />
+        <result column="value" property="value" javaType="string" jdbcType="VARCHAR" />
+        <result column="placeholder" property="placeholder" javaType="string" jdbcType="VARCHAR" />
+        <result column="type" property="type" javaType="string" jdbcType="VARCHAR" />
+        <result column="row" property="row" javaType="int" jdbcType="INTEGER" />
+        <result column="column" property="column" javaType="int" jdbcType="INTEGER" />
+        <result column="width" property="width" javaType="int" jdbcType="INTEGER" />
+        <result column="sort" property="sort" javaType="int" jdbcType="INTEGER" />
+        <result column="is_enable" property="enable" javaType="int" jdbcType="TINYINT" />
+        <result column="is_delete" property="delete" javaType="int" jdbcType="TINYINT" />
+        <result column="create_time" property="createTime" javaType="Date" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" javaType="Date" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, document_template_id, system_component_id, value_style, is_delete
+    </sql>
+
+    <insert id="insertMultiplePrinterCustomComponent" parameterType="list">
+        INSERT INTO printer_custom_component
+        (
+            document_template_id,
+            system_component_id,
+            value_style
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.documentTemplateId},
+                #{item.systemComponentId},
+                #{item.valueStyle}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateMultiplePrinterCustomComponentByTemplateId" parameterType="int">
+        UPDATE printer_custom_component
+        SET is_delete = 1
+        WHERE document_template_id = #{documentTemplateId}
+    </update>
+
+    <select id="selectPrinterTemplateCustomComponentByTemplateId" parameterType="int" resultMap="MergeResultMap">
+        SELECT
+            sc.id,
+            sc.document_template_id,
+            ss.id AS system_component_id,
+            sc.value_style,
+            ss.module_id,
+            ss.parent_id,
+            ss.ref_id,
+            ss.label,
+            ss.`value`,
+            ss.placeholder,
+            ss.`type`,
+            ss.row,
+            ss.`column`,
+            ss.width,
+            ss.sort,
+            ss.is_enable,
+            sc.is_delete,
+            ss.create_time,
+            ss.update_time
+        FROM printer_system_component ss
+        INNER JOIN printer_custom_component sc ON sc.system_component_id = ss.id
+        WHERE sc.document_template_id = #{documentTemplateId}
+        AND sc.is_delete = 0
+    </select>
+</mapper>

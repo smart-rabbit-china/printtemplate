@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxcs.printtemplate.dao.PrinterDocumentTypeMapper">
+    <resultMap id="BaseResultMap" type="com.zxcs.printtemplate.model.PrinterDocumentTypeDO">
+        <id column="id" property="id" javaType="Integer" jdbcType="INTEGER"/>
+        <result column="name" property="name" javaType="String" jdbcType="VARCHAR"/>
+        <result column="status" property="status" javaType="Integer" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" javaType="Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, `name`, status, create_time, update_time
+    </sql>
+
+    <select id="selectPrinterDocumentTypeByPrimaryId" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM printer_document_type
+        WHERE id = #{id};
+    </select>
+
+    <select id="selectPrinterDocumentType" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM printer_document_type
+        WHERE status = 1
+    </select>
+
+    <update id="updatePrinterDocumentType" parameterType="com.zxcs.printtemplate.model.PrinterDocumentTypeDO">
+        UPDATE printer_document_type
+        <set>
+            <if test="name != null">`name` = #{name}</if>,
+            <if test="status != null">status = #{status}</if>,
+            <if test="updateTime != null">update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>

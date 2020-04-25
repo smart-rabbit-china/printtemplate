@@ -1,0 +1,124 @@
+.component-box {
+    border: 4px dotted dodgerblue;
+    padding: 20px 30px;
+    .panel-module {
+        margin: 10px 20px;
+        border: 2px solid gray;
+        .panel-module-title {
+            padding: 0 10px;
+            border-bottom: 2px solid gray;
+        }
+        .panel-module-body {
+            padding: 2%;
+            .panel-component {
+                margin: 2%;
+                width: 28%;
+                background-color: gray;
+                display: inline-block;
+                border: 1px solid white;
+                height: 45px;
+                cursor: pointer;
+                table {
+                    vertical-align: middle;
+                    height: 100%;
+                    width: 100%;
+                    tbody {
+                        display: table-row-group;
+                        vertical-align: middle;
+                        border-color: inherit;
+                        tr {
+                            display: table-row;
+                            vertical-align: inherit;
+                            border-color: inherit;
+                            td {
+                                color: white;
+                                font-size: 14px;
+                                text-align: center;
+                                display: table-cell;
+                                vertical-align: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+            .panel-component:hover {
+                border: 1px solid gray;
+            }
+            /*启用状态*/
+            .switch-on {
+                background-color: #2D93CA;
+                color: #000;
+            }
+        }
+    }
+}
+
+.template-container {
+    width: 70%;
+    border: 4px dotted dodgerblue;
+    padding: 30px 30px;
+    background-color: #e4e4e4;
+    .template-module-list {
+        background-color: white;
+        margin: 0 20px;
+        padding: 20px 15px;
+        .template-module {
+            .template-row {
+                display: flex;
+                justify-content: space-between;
+                .template-component {
+                    width: 100%;
+                    box-sizing:border-box;
+                    border: 1px solid white;
+                }
+                .template-component:hover {
+                    border: 1px solid orange;
+                    background-color: rgba(247, 248, 74, 0.67);
+                    cursor: pointer;
+                }
+                /*获取焦点*/
+                .template-component-focus {
+                    border: 1px solid orange;
+                    background-color: rgba(247, 248, 74, 0.67);
+                }
+                .template-component-individuation {
+                    width: 100%;
+                    .template-component-table {
+                        .template-component-thead,
+                        .template-component-tbody {
+                            .template-component-tr {
+                                display: flex;
+                                justify-content: space-between;
+                                .table-component-td {
+
+                                }
+                            }
+                        }
+                    }
+                }
+                /*店铺logo*/
+                .shop-logo {
+                    width: 100%;
+                    color: #3194ff;
+                    padding: 10px;
+                    margin: 10px 0;
+                    text-align: center;
+                    box-sizing:border-box;
+                    border: 1px solid black;
+                    background-color: #e6e6e6;
+                }
+            }
+            /*模块分隔线*/
+            .the-divider {
+                margin: 5px 0;
+            }
+        }
+    }
+}
+
+.template-property-panel {
+    position: fixed;
+    bottom: 10%;
+    right: 18%;
+    width: 14%;
+}
