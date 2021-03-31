@@ -19,7 +19,7 @@
         <mysql-connector-java.version>5.1.48</mysql-connector-java.version>
         <commons-lang.version>3.3.2</commons-lang.version>
         <fastjson.version>1.2.61</fastjson.version>
-        <guava.version>28.0-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <pagehelper.version>5.1.8</pagehelper.version>
         <lombok.version>1.18.12</lombok.version>
     </properties>
